@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC">
+  <bpmn:process id="Process" isExecutable="false">
+    <bpmn:startEvent id="StartEvent">
+      <bpmn:outgoing>StartExclusiveGateway</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="StartExclusiveGateway">
+      <bpmn:incoming>StartEvent</bpmn:incoming>
+      <bpmn:outgoing>Flow0</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="StartFlow" sourceRef="StartEvent" targetRef="StartExclusiveGateway" />
+    <bpmn:endEvent id="EndEvent">
+      <bpmn:incoming>EndExclusiveGateway</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="EndExclusiveGateway">
+      <bpmn:incoming>Flow3</bpmn:incoming>
+      <bpmn:outgoing>EndEvent</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="EndFlow" sourceRef="EndExclusiveGateway" targetRef="EndEvent" />
+    <bpmn:task id="Task0" name="PO Created">
+      <bpmn:incoming>Flow0</bpmn:incoming>
+      <bpmn:outgoing>Flow1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task1" name="POH: Invoice Receipt">
+      <bpmn:incoming>Flow1</bpmn:incoming>
+      <bpmn:outgoing>Flow2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task2" name="POH: Goods Receipt">
+      <bpmn:incoming>Flow2</bpmn:incoming>
+      <bpmn:outgoing>Flow3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow0" sourceRef="StartExclusiveGateway" targetRef="Task0" />
+    <bpmn:sequenceFlow id="Flow1" sourceRef="Task0" targetRef="Task1" />
+    <bpmn:sequenceFlow id="Flow2" sourceRef="Task1" targetRef="Task2" />
+    <bpmn:sequenceFlow id="Flow3" sourceRef="Task2" targetRef="EndExclusiveGateway" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="Process">
+      <bpmndi:BPMNShape id="StartEventshape" bpmnElement="StartEvent">
+        <dc:Bounds x="-186" y="-83" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartExclusiveGatewayShape" bpmnElement="StartExclusiveGateway" isMarkerVisible="true">
+        <dc:Bounds x="-90" y="-90" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEventshape" bpmnElement="EndEvent">
+        <dc:Bounds x="590" y="367" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndExclusiveGatewayShape" bpmnElement="EndExclusiveGateway" isMarkerVisible="true">
+        <dc:Bounds x="480" y="360" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TaskShape0" bpmnElement="Task0">
+        <dc:Bounds x="0" y="0" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TaskShape1" bpmnElement="Task1">
+        <dc:Bounds x="160" y="120" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TaskShape2" bpmnElement="Task2">
+        <dc:Bounds x="320" y="240" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="StartFlowShape" bpmnElement="StartFlow">
+        <di:waypoint x="-150" y="-65" />
+        <di:waypoint x="-90" y="-65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="EndFlowShape" bpmnElement="EndFlow">
+        <di:waypoint x="530" y="385" />
+        <di:waypoint x="590" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowShape0" bpmnElement="Flow0">
+        <di:waypoint x="-40" y="-65" />
+        <di:waypoint x="60" y="0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowShape1" bpmnElement="Flow1">
+        <di:waypoint x="120" y="40" />
+        <di:waypoint x="220" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowShape2" bpmnElement="Flow2">
+        <di:waypoint x="280" y="160" />
+        <di:waypoint x="380" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowShape3" bpmnElement="Flow3">
+        <di:waypoint x="440" y="280" />
+        <di:waypoint x="505" y="360" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
